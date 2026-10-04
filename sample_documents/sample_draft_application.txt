@@ -1,0 +1,44 @@
+================================================================================
+GRANT APPLICATION DRAFT: PROJECT TECHFORWARD YOUTH
+Submitted by: Youth Horizon Initiative (YHI)
+Proposed Project Title: "Empowering Rural Youth Through Hands-On Robotics"
+================================================================================
+
+SECTION 1: ORGANIZATIONAL BACKGROUND & ELIGIBILITY
+Youth Horizon Initiative (YHI) is a regional non-profit organization established in 2019, officially recognized as a tax-exempt 501(c)(3) entity by the Internal Revenue Service (EIN: 12-3456789). Over our five years of continuous operation, YHI has delivered supplemental STEM enrichment programs to low-income middle school students.
+
+We have served over 50,000 students across the state with a 100% program completion rate and zero dropouts. Our proprietary hands-on robotics workshops are recognized as the number-one premier experiential education model in the region.
+
+SECTION 2: PROJECT DESIGN & TIMELINE
+"Project TechForward" will expand weekend robotics and coding bootcamps to 600 middle school students in three underserved rural counties.
+Specific SMART Objectives:
+1. Recruit 600 students (at least 55% female or minority) across 6 school clusters by Month 2.
+2. Deliver 120 hours of instruction per cohort using open-source microcontrollers by Month 8.
+3. Achieve an 85% score on post-program computational thinking assessments by Month 12.
+
+Implementation Milestones:
+- Q1 (Months 1-3): Curriculum adaptation, hiring 4 mentor instructors, school district enrollment kickoff. Lead: Dr. Elena Vance.
+- Q2 (Months 4-6): Delivery of Phase I robotics challenges; mid-term learner feedback surveys. Lead: Marcus Thorne.
+- Q3 (Months 7-9): Phase II competitive hackathon events across partner counties. Lead: Marcus Thorne.
+- Q4 (Months 10-12): Capstone showcase, outcome evaluation report, and final participant certifications. Lead: Dr. Elena Vance.
+
+SECTION 3: PERSONNEL & GOVERNANCE
+Project Director: Dr. Elena Vance, Ed.D in Instructional Technology with 12 years of STEM curriculum leadership.
+Technical Lead: Marcus Thorne, B.S. Robotics Engineering, former lead robotics mentor.
+Biographical overviews are provided; full 2-page curriculum vitae are included in Appendix A.
+
+SECTION 4: BUDGET OVERVIEW
+Youth Horizon Initiative requests a total funding allocation of $185,000 for the 12-month program.
+Estimated Budget Distribution:
+- Staffing & Instructors: $110,000
+- Robotics Hardware Kits & Consumables: $45,000
+- Student Transportation & Nutrition: $15,000
+- Administrative Support: $15,000
+Total Request: $185,000.
+(Note: Detailed spreadsheet sub-allocations and narrative justifications for supplies will be finalized upon award notification).
+
+SECTION 5: ATTACHMENTS & ASSURANCES
+- IRS 501(c)(3) Determination Letter: [Attached as Appendix B]
+- Resumes of Key Personnel: [Attached as Appendix A]
+- Financial Disclosures: Our annual budget is reviewed by our Board Treasurer. Audited formal CPA statements for FY2022-2023 are currently being scheduled with an independent accounting firm.
+- Letters of Support: Discussions are ongoing with local county school superintendents; formal letters of commitment will follow.

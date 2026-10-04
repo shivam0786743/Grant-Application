@@ -256,3 +256,94 @@ npm test
 - **Non-Authoritative Advisory Tool**: This software is intended exclusively as a preparatory completeness checklist and evidence mapping tool for applicants and grant writers.
 - **Official Disclaimer**:
   > *DISCLAIMER: This application does NOT provide legal advice or official funding eligibility determinations. Final grant award decisions rest exclusively with the designated funding agency or evaluation committee.*
+
+---
+
+## Production Deployment Guide
+
+### Architecture
+
+```
+Vercel (Frontend)  ──►  Render (Backend Docker)  ──►  MongoDB Atlas (Database)
+```
+
+### Step 1 — MongoDB Atlas Setup (Free Database)
+
+1. Go to [mongodb.com/atlas](https://www.mongodb.com/atlas) → Create free M0 cluster.
+2. Under **Database Access** → Add a user (e.g. `grant_user`) with password.
+3. Under **Network Access** → Add IP `0.0.0.0/0` (allow all — Render uses dynamic IPs).
+4. Click **Connect** → **Drivers** → Copy the connection string:
+   ```
+   mongodb+srv://grant_user:<password>@cluster0.xxxxx.mongodb.net/grant_completeness_db?retryWrites=true&w=majority
+   ```
+
+---
+
+### Step 2 — Backend on Render (Docker)
+
+1. Push your code to GitHub.
+2. Go to [render.com](https://render.com) → **New** → **Web Service**.
+3. Select your GitHub repo → Choose the **`backend/`** directory as root.
+4. Set **Runtime** to **Docker** — Render will use `backend/Dockerfile` automatically.
+5. Set the following **Environment Variables** in Render Dashboard:
+
+| Variable | Value |
+|---|---|
+| `NODE_ENV` | `production` |
+| `PORT` | `5000` |
+| `MONGODB_URI` | Your MongoDB Atlas connection string |
+| `GEMINI_API_KEY` | Your Google AI Studio API key |
+| `GEMINI_MODEL` | `gemini-1.5-flash` |
+| `FRONTEND_URL` | Your Vercel URL (set after Step 3, then update this) |
+| `MAX_FILE_SIZE_BYTES` | `15728640` |
+
+6. Deploy. Note your backend URL: `https://your-backend.onrender.com`
+7. Test health check: `https://your-backend.onrender.com/api/health`
+
+---
+
+### Step 3 — Frontend on Vercel
+
+1. Go to [vercel.com](https://vercel.com) → **New Project** → Import GitHub repo.
+2. Set **Root Directory** to `frontend/`.
+3. Vercel auto-detects Vite — no extra config needed (uses `vercel.json`).
+4. Set the following **Environment Variable** in Vercel Dashboard:
+
+| Variable | Value |
+|---|---|
+| `VITE_API_URL` | `https://your-backend.onrender.com/api` |
+
+5. Deploy. Note your frontend URL: `https://your-frontend.vercel.app`
+
+---
+
+### Step 4 — Update CORS on Backend
+
+Go back to Render → Update `FRONTEND_URL` env variable to your Vercel URL:
+```
+FRONTEND_URL=https://your-frontend.vercel.app
+```
+Redeploy the backend. CORS will now only allow your Vercel domain.
+
+---
+
+### Environment Variables Summary
+
+#### Backend (Render)
+| Variable | Required | Description |
+|---|---|---|
+| `NODE_ENV` | ✅ | Set to `production` |
+| `PORT` | ✅ | `5000` (Render overrides automatically) |
+| `MONGODB_URI` | ✅ | MongoDB Atlas connection string |
+| `GEMINI_API_KEY` | ✅ | Google AI Studio API key |
+| `GEMINI_MODEL` | Optional | Default: `gemini-1.5-flash` |
+| `FRONTEND_URL` | ✅ | Your Vercel frontend URL (for CORS) |
+| `MAX_FILE_SIZE_BYTES` | Optional | Default: `15728640` (15MB) |
+
+#### Frontend (Vercel)
+| Variable | Required | Description |
+|---|---|---|
+| `VITE_API_URL` | ✅ | Full backend API URL: `https://your-backend.onrender.com/api` |
+
+> **Security Note:** Never commit `.env` files to Git. They are already in `.gitignore`.
+> Use each platform's dashboard to set secret environment variables.

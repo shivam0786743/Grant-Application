@@ -10,7 +10,9 @@ import {
   IDeterministicSummary
 } from '../types';
 
-const API_BASE_URL = '/api';
+// Production pe VITE_API_URL set karein (e.g. https://your-backend.onrender.com/api)
+// Local dev mein Vite proxy use hoti hai, isliye fallback '/api' hai
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,

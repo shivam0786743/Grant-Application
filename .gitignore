@@ -1,9 +1,35 @@
+# Dependencies
 node_modules
+.npm
+
+# Build outputs
 dist
 build
+.vite
+
+# Environment variables — KABHI COMMIT MAT KARO
 .env
+.env.local
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Coverage / Test artifacts
 coverage
+.nyc_output
+
+# Misc
 scratch
 uploads
+*.tmp

@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  // Local dev proxy — production mein VITE_API_URL env var use hoga
   server: {
     port: 5173,
     proxy: {
@@ -11,5 +12,8 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+  build: {
+    outDir: 'dist'
   }
 });

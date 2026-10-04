@@ -6,21 +6,23 @@ import { config } from './config/env';
 
 const app = express();
 
-// CORS Configuration
+// CORS — strictly whitelist FRONTEND_URL (set in env) + localhost for development
+const allowedOrigins = [
+  config.frontendUrl,
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173'
+].filter(Boolean);
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, or same-origin)
+      // Allow server-to-server (no origin) or health checks
       if (!origin) return callback(null, true);
-      // Allow localhost dev servers or configured frontend URL
-      if (
-        origin === config.frontendUrl ||
-        origin.includes('localhost') ||
-        origin.includes('127.0.0.1')
-      ) {
+      if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
-      return callback(null, true); // Permissive for assessment testing
+      return callback(new Error(`CORS: Origin "${origin}" is not allowed`));
     },
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS']
